@@ -1,3 +1,5 @@
+var alreadySeemGifs = []
+
 const gifs = [
     "https://media0.giphy.com/media/iFriXt26sHrAsM1ak0/giphy.gif",
     "https://media1.giphy.com/media/3ohhwJlKHGchQUtvBS/giphy.gif",
@@ -20,11 +22,60 @@ const gifs = [
     "https://media4.giphy.com/media/H62OwuuAXqEdKbwHpJ/giphy.gif",
     "https://media3.giphy.com/media/55rLoTnYxJhh7hX0kV/giphy.gif",
     "https://media0.giphy.com/media/WBEJDXzbcxMHxgOZSY/giphy.gif",
-    "https://media2.giphy.com/media/YTQXiIQfWtzH2sB5Jb/giphy.gif"
+    "https://media2.giphy.com/media/YTQXiIQfWtzH2sB5Jb/giphy.gif",
+    
+    "https://media1.giphy.com/media/cAR2mcS64ISweFlemV/giphy.gif",
+    "https://media0.giphy.com/media/SesBbLmKW4jEtdnkrX/giphy.gif",
+    "https://media3.giphy.com/media/9jUu45ULnPmYM6Oihw/giphy.gif",
+    "https://media0.giphy.com/media/Z27Akgz2y0ExIoWdpN/giphy.gif",
+    "https://media3.giphy.com/media/gLVHIQIes2HyR4l6hg/giphy.gif",
+    "https://media3.giphy.com/media/rssEM6HCG0AXlQiFMG/giphy.gif",
+    "https://media2.giphy.com/media/HqDYsLHTzMvDz4LlEL/giphy.gif",
+    "https://media2.giphy.com/media/1zgvDe0iSTIXwkRZF5/giphy.gif",
+    "https://media3.giphy.com/media/Q9kYfPRXOiiMzHsz1o/giphy.gif",
+    "https://media2.giphy.com/media/cW2kzQ0JsmynJ72TOH/giphy.gif",
+    "https://media0.giphy.com/media/1Kd2COBgEkEi2jaaRr/giphy.gif",
+    "https://media0.giphy.com/media/jkIRizKb798SFlegLP/giphy.gif",
+    "https://media4.giphy.com/media/cKQGfkWrHQOccJeoQj/giphy.gif",
+    "https://media0.giphy.com/media/H4iICxEz4tzwWsGtb9/giphy.gif",
+    "https://media1.giphy.com/media/hJZYfsmCM5hv4JjsMq/giphy.gif",
+    "https://media1.giphy.com/media/jn2q4Omha3fXfHtETo/giphy.gif",
+    "https://media0.giphy.com/media/PhTzdSFJjcBleSdjl5/giphy.gif",
+    "https://media0.giphy.com/media/egAFSJzyEbozKEhVgD/giphy.gif",
+    "https://media4.giphy.com/media/S5PhhQn5WzAWYT6pVT/giphy.gif",
+    "https://media1.giphy.com/media/Bsx3iXhMjKezfpVJzM/giphy.gif",
+    "https://media2.giphy.com/media/05dkAfWHdAGPSv6VDB/giphy.gif",
+    "https://media1.giphy.com/media/uXYy46IRliHQdfX0Jw/giphy.gif",
+    "https://media3.giphy.com/media/3EZCq6mPiVkqwU91qC/giphy.gif",
+    "https://media3.giphy.com/media/87U7TU4q8iYMmudlmo/giphy.gif",
+    "https://media0.giphy.com/media/pZgG5GkT5SlahB0cYl/giphy.gif",
+    "https://media2.giphy.com/media/asF0u3VdVvu1lCLKNz/giphy.gif",
+    "https://media1.giphy.com/media/sWZUU7OAScUGz0tYmm/giphy.gif",
+    "https://media0.giphy.com/media/qhWK745LVwd1RJiA6f/giphy.gif",
+    "https://media0.giphy.com/media/FHRFqSxaVEBfKph1Ex/giphy.gif",
+    "https://media3.giphy.com/media/sqeA3nusqT7oasyvEb/giphy.gif",
+    "https://media0.giphy.com/media/MzdQCtFqczdi4n3cei/giphy.gif",
+    "https://media2.giphy.com/media/GT4oN9CZqQJQrIkMem/giphy.gif",
+    "https://media3.giphy.com/media/Wuq4EoViI3PazMOdvI/giphy.gif",
+    "https://media2.giphy.com/media/heJRa7xN5SaIwHzww2/giphy.gif",
+    "https://media3.giphy.com/media/xd5kq59h2JlRzB8Uer/giphy.gif",
+    "https://media0.giphy.com/media/qCBMydmaTLS8RMzb9F/giphy.gif"
+
 ]
 
 function next() {
     const randonlyPickedGif = parseInt(Math.random() * gifs.length)
+
+    if(alreadySeemGifs.length == gifs.length) {
+        alreadySeemGifs = []
+    }
+
+    console.log(alreadySeemGifs)
+    if(alreadySeemGifs.indexOf(randonlyPickedGif) > -1) {
+        return next()
+    } else {
+        alreadySeemGifs.push(randonlyPickedGif)
+    }
     return gifs[randonlyPickedGif];
 }
 
@@ -74,11 +125,12 @@ setInterval('clock()', 0);
 firstTime = true
 
 
-function background() {
+function requestNewGif() {
     if(firstTime) {
         var body=document.body;
-        var a=document.querySelector('a');
-        body.classList.toggle("background");        
+        body.classList.toggle("background");
+        document.getElementById("main-title").textContent = "THIS.IS.A.MESSAGE"
+
         firstTime = false
         document.getElementById("player").play()
     } 
